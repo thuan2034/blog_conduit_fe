@@ -27,12 +27,6 @@ export default function Header() {
             {/* Navigation Links - Desktop */}
             <nav className="hidden md:flex space-x-6">
                 <Link
-                    href="/"
-                    className={`text-gray-600 hover:text-emerald-500 transition-colors ${pathname === '/' ? 'text-emerald-600' : ''}`}
-                >
-                    Home
-                </Link>
-                <Link
                     href="/login"
                     className={`text-gray-600 hover:text-emerald-500 transition-colors ${pathname === '/login' ? 'text-emerald-600' : ''}`}
                 >
@@ -64,7 +58,7 @@ export default function Header() {
                 </div>
             )}
 
-            {/* Auth Buttons */}
+            {/* Auth Buttons
             <div className="hidden md:flex space-x-4">
                 <Link
                     href="/login"
@@ -78,7 +72,7 @@ export default function Header() {
                 >
                     Sign up
                 </Link>
-            </div>
+            </div> */}
         </header>
     );
 }

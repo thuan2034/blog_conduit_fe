@@ -19,33 +19,35 @@ export default function LoginForm() {
       alert("Đăng nhập thành công!");
       // Có thể redirect hoặc reload lại trang
     } catch (err: any) {
-      setError("Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin.");
+      setError(err.message||"Đăng nhập thất bại, lỗi không xác định");
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto p-4 bg-white rounded shadow">
-      <h2 className="text-xl font-bold mb-4">Đăng nhập</h2>
+    <form onSubmit={handleSubmit} className="">
+      <h2 className="">Đăng nhập</h2>
+      <label htmlFor="email">Email</label>
       <input
         type="email"
         placeholder="Email"
-        className="w-full mb-2 p-2 border rounded"
+        className=""
         value={email}
         onChange={e => setEmail(e.target.value)}
         required
       />
+      <label htmlFor="password">Mật khẩu</label>
       <input
         type="password"
         placeholder="Mật khẩu"
-        className="w-full mb-2 p-2 border rounded"
+        className=""
         value={password}
         onChange={e => setPassword(e.target.value)}
         required
       />
-      {error && <div className="text-red-500 mb-2">{error}</div>}
-      <button type="submit" className="w-full bg-emerald-600 text-white p-2 rounded" disabled={loading}>
+      {error && <div className="">{error}</div>}
+      <button type="submit" className="" disabled={loading}>
         {loading ? "Đang đăng nhập..." : "Đăng nhập"}
       </button>
     </form>

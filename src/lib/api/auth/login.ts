@@ -5,7 +5,8 @@ export async function login(email: string, password: string) {
         body: JSON.stringify({ email, password }),
     });
     if (!res.ok) {
-        throw new Error('Login failed');
+        const errorData = await res.json();
+        throw new Error(errorData.message||"Đăng nhập thất bại, lỗi không xác định");
     }
     return res.json();
 }

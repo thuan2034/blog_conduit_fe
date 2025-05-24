@@ -1,5 +1,5 @@
-export async function listArticles() {
-    const res = await fetch('http://localhost:8080/api/articles', {
+export async function listArticles(limit?: number, offset?: number) {
+    const res = await fetch(`http://localhost:8080/api/articles?limit=${limit}&offset=${offset}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     });

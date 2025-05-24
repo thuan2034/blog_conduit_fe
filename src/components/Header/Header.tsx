@@ -8,7 +8,7 @@ export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <header className="flex justify-between items-center p-4 bg-white shadow-md">
+        <header className="flex justify-between items-center p-4 bg-white shadow-md sticky top-0">
             {/* Logo */}
             <div className="flex items-center">
                 <Link href="/" className="text-xl font-bold text-emerald-600 hover:text-emerald-500 transition-colors">

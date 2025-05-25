@@ -1,6 +1,6 @@
 "use client"
 import { listArticles } from "@/lib/api/article/list";
-import ArticleCard from "@/components/ArticleCard/ArticleCard";
+import ArticleCard from "@/components/Article/ArticleCard";
 import { useEffect, useState } from "react";
 export default function Home() {
   const [articles, setArticles] = useState([] as any[]);

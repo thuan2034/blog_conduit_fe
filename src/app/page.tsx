@@ -12,7 +12,14 @@ export default function Home() {
         setTotal(res.data.totalArticles);
         return res.data.articleResponseDtoList; 
       })
-      .then((res) => setArticles((prev) => [...prev, ...res]));
+      .then((newArticles) => {
+      if (offset === 0) {
+        // lần đầu hoặc khi reset thì ghi đè
+        setArticles(newArticles);
+      } else {
+        setArticles((prev) => [...prev, ...newArticles]);
+      }
+    });
   }, [offset]);
   return (
     <main className="container mx-auto px-4 mt-10 ">

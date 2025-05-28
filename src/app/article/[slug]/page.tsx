@@ -1,18 +1,51 @@
-"use client"
+"use client";
 import { singleArticle } from "@/lib/api/article/single";
-import { useState, useEffect,use } from "react";
-export default function ArticlePage({
-    params,
-  }: {
-    params: Promise<{ slug: string }>
-  }) {
-    const [article, setArticle] = useState(null);
-   useEffect(() => {
-    const { slug } = use(params);
-    async function fetchArticle() {
-        
-    }
-    return <div>{slug}</div>
+import ArticleOwnPage from "@/components/Article/ArticleOwnPage";
+import Comments from "@/components/Comment/Comments";
+import { useState, useEffect } from "react";
 
+export default function ArticlePage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const [article, setArticle] = useState(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchArticle = async () => {
+      try {
+        const { slug } = await params;
+        const res = await singleArticle(slug);
+        setArticle(res.data);
+      } catch (error) {
+        console.error("Failed to fetch article:", error);
+        setError("Không thể tải bài viết");
+      }
+    };
+    fetchArticle();
+  }, [params]);
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (!article) {
+    return <div>Đang tải...</div>;
+  }
+
+  return (
+    <>
+    <ArticleOwnPage
+      title={article.title}
+      description={article.description}
+      body={article.body}
+      favoritesCount={article.favoritesCount}
+      createdAt={article.createdAt}
+      tagList={article.tagList}
+      author={article.author}
+    />
+    <Comments slug={article.slug} /> {/* Truyền slug từ article vào Comments */}
+  </>
+  );
 }
-  

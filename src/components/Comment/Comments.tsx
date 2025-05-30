@@ -13,11 +13,14 @@ export default function Comments({ slug }: { slug: string }) {
         setLoading(true);
         const response = await getComments(slug);
         setComments(response.data);
+        if (!response.data || response.data.length === 0) {
+          setError("Không có bình luận nào cho bài viết này.");
+        }
         setLoading(false);
         console.log("Comments fetched successfully:", response.data);
       } catch (error) {
         console.error("Failed to fetch comments:", error);
-        setError("Không thể tải bình luận");
+        setError("Không thể tải bình luận, vui lòng thử lại sau.");
         setLoading(false);
       }
     }

@@ -1,11 +1,10 @@
+import apiClient from "../AxiosClient";
 export async function listArticles(limit?: number, offset?: number) {
-    const res = await fetch(`http://localhost:8080/api/articles?limit=${limit}&offset=${offset}`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
+   const response = await apiClient.get("/articles", {
+      params: {
+            limit: limit || 20,
+            offset: offset || 0,
+      }
     });
-    if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.message || "Lấy danh sách bài viết thất bại, lỗi không xác định");
-    }
-    return res.json();
+    return response.data;
 }

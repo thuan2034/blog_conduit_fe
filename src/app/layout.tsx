@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { AuthProvider } from "@/lib/auth/AuthContext";
+
 import Header from "@/components/Layout/Header";
 import "./globals.css";
 
@@ -18,8 +20,10 @@ export default function RootLayout({
         <title>Blog</title>
       </head>
       <body>
-        <Header />
+        <AuthProvider>
+          <Header />
         {children}
+        </AuthProvider>
       </body>
     </html>
   );
